@@ -624,7 +624,9 @@ const fluidPlayerClass = function () {
     };
 
     self.checkShouldDisplayVolumeBar = () => {
-        return 'iOS' !== self.getMobileOs().userOs;
+        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+
+        return vw > 600;
     };
 
     self.generateCustomControlTags = (options) => {
@@ -2359,8 +2361,6 @@ const fluidPlayerClass = function () {
         if (self.isCurrentlyPlayingAd && !self.domRef.player.paused) {
             self.toggleAdCountdown(true);
         }
-
-        self.domRef.player.style.cursor = 'none';
 
         // handles both VR and Normal condition
         if (!self.hasControlBar()) {

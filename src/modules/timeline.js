@@ -3,7 +3,7 @@ export default function (playerInstance, options) {
     playerInstance.setupThumbnailPreviewVtt = () => {
         playerInstance.sendRequest(
             playerInstance.displayOptions.layoutControls.timelinePreview.file,
-            true,
+            false,
             playerInstance.displayOptions.vastOptions.vastTimeout,
             function () {
                 const convertVttRawData = function (vttRawData) {
@@ -152,6 +152,7 @@ export default function (playerInstance, options) {
                     'url(' + thumbnailCoordinates.image + ') no-repeat scroll -' + thumbnailCoordinates.x + 'px -' + thumbnailCoordinates.y + 'px';
                 timelinePreviewTag.style.left = hoverX - (thumbnailCoordinates.w / 2) + 'px';
                 timelinePreviewTag.style.display = 'block';
+                //timelinePreviewTag.textContent = playerInstance.formatTime(thumbnailCoordinates.startTime);
                 if (!playerInstance.displayOptions.layoutControls.timelinePreview.spriteImage) {
                     timelinePreviewTag.style.backgroundSize = 'contain';
                 }
@@ -200,6 +201,6 @@ export default function (playerInstance, options) {
             throw 'Invalid thumbnail-preview - type must be VTT or static';
         }
 
-        playerInstance.showTimeOnHover = false;
+        //playerInstance.showTimeOnHover = false;
     };
 }
