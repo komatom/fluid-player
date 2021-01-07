@@ -107,6 +107,7 @@ const fluidPlayerClass = function () {
         self.mainVideoDuration = 0;
         self.isTimer = false;
         self.timer = null;
+        self.initDuration = '';
         self.timerPool = {};
         self.adList = {};
         self.adPool = {};
@@ -794,6 +795,9 @@ const fluidPlayerClass = function () {
         controls.duration.id = self.videoPlayerId + '_fluid_control_duration';
         controls.duration.className = 'fluid_control_duration fluid_fluid_control_duration';
         controls.duration.innerText = '00:00 / 00:00';
+        if (options.initDuration !== '') {
+            controls.duration.innerText = '00:00 / ' + options.initDuration;
+        }
         controls.rightContainer.appendChild(controls.duration);
 
         return controls;
@@ -1802,6 +1806,7 @@ const fluidPlayerClass = function () {
 
         const controls = self.generateCustomControlTags({
             displayVolumeBar: self.checkShouldDisplayVolumeBar(),
+            initDuration: self.displayOptions.initDuration,
             primaryColor: self.displayOptions.layoutControls.primaryColor
                 ? self.displayOptions.layoutControls.primaryColor
                 : 'red',
